@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Biblioteca {
 
     Livro novoLivro = new Livro();
-    Usuario novoUsuario = new Usuario();
+    Usuario novoUsuario = new Usuario("Tiago", "tiago@gmail.com", "999999999");
     Scanner scan = new Scanner(System.in);
 
     public void iniciar() {
@@ -53,7 +53,6 @@ public class Biblioteca {
                     System.out.println("Digite o ID do livro que deseja retirar: ");
                     novoLivro.listarLivros();
                     String id = scan.nextLine();
-                    Usuario novoUsuario = new Usuario("Tiago", "tiago@gmail.com", "999999999");
                     novoLivro.emprestarLivro(novoUsuario, id);
                     break;
                 case 4:
@@ -61,7 +60,7 @@ public class Biblioteca {
                     while (opcaoRelatorio != 0) {
                         System.out.println("Escolha o relatorio desejado: ");
                         System.out.println("1 - Relatorio de livros em estoque.");
-                        System.out.println("2 - Relatorio de livros mais emprestados.");
+                        System.out.println("2 - Relatorio de livros emprestados.");
                         System.out.println("3 - Relatorio de usuarios em atraso.");
                         System.out.println("0 - Voltar");
                         opcaoRelatorio = Integer.parseInt(scan.nextLine());
@@ -70,6 +69,7 @@ public class Biblioteca {
                                 novoLivro.listarLivros();
                                 break;
                             case 2:
+                                novoUsuario.livrosEmprestados();
                                 break;
                             case 3:
                                 break;

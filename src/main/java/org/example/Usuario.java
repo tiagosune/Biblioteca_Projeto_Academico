@@ -58,4 +58,8 @@ public class Usuario {
         usuario.setTelefone(telefone);
         usuarios.put(getId(), usuario);
     }
+
+    public void livrosEmprestados(){
+        System.out.println(meusLivros);
+    }
 }

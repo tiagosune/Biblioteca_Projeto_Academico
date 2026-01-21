@@ -74,11 +74,13 @@ public class Livro {
     }
 
     public void adicionarLivro(Livro livro) {
-        livro.setTitulo(titulo);
-        livro.setAutor(autor);
-        livro.setAnoPublicacao(anoPublicacao);
-        livro.setQuantidadeEstoque(quantidadeEstoque);
-        livrosEstoque.put(getId(), livro);
+        Livro livro1 = new Livro();
+        livro1.setTitulo(titulo);
+        livro1.setAutor(autor);
+        livro1.setAnoPublicacao(anoPublicacao);
+        livro1.setQuantidadeEstoque(quantidadeEstoque);
+        livro1.setIsbn(isbn);
+        livrosEstoque.put(livro1.getId(), livro1);
     }
 
 
@@ -107,6 +109,6 @@ public class Livro {
                 "\nAutor - " + getAutor() +
                 "\nAno de publicação - " + getAnoPublicacao() +
                 "\nQuantidade de estoque - " + getQuantidadeEstoque() +
-                "\nISBN - \n" + getIsbn();
+                "\nISBN - " + getIsbn() + "\n";
     }
 }
