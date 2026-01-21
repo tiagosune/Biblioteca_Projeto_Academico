@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Biblioteca {
 
     Livro novoLivro = new Livro();
-    Usuario novoUsuario;
+    Usuario novoUsuario = new Usuario();
     Scanner scan = new Scanner(System.in);
 
     public void iniciar() {
@@ -41,11 +41,11 @@ public class Biblioteca {
                     break;
                 case 2:
                     System.out.println("Digite o nome do usuario: ");
-                    novoUsuario.setNome(scan.next());
+                    novoUsuario.setNome(scan.nextLine());
                     System.out.println("Digite o email do usuario: ");
-                    novoUsuario.setEmail(scan.next());
+                    novoUsuario.setEmail(scan.nextLine());
                     System.out.println("Digite o telefone do usuario: ");
-                    novoUsuario.setTelefone(scan.next());
+                    novoUsuario.setTelefone(scan.nextLine());
                     novoUsuario.adicionarUsuario(novoUsuario);
                     System.out.println("Usuario cadastrado com sucesso!");
                     break;

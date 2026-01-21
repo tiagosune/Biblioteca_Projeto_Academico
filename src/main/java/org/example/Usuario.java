@@ -1,12 +1,13 @@
 package org.example;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class Usuario {
 
-    List<Usuario> usuarios = new ArrayList<>();
+    Map<String, Usuario> usuarios = new HashMap();
+    Map<String, Livro> meusLivros = new HashMap<>();
+
     private String id;
     private String nome;
     private String email;
@@ -17,6 +18,10 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+    }
+
+    public Usuario(){
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getNome() {
@@ -43,10 +48,14 @@ public class Usuario {
         this.telefone = telefone;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public void adicionarUsuario(Usuario usuario){
         usuario.setNome(nome);
         usuario.setEmail(email);
         usuario.setTelefone(telefone);
-        usuarios.add(usuario);
+        usuarios.put(getId(), usuario);
     }
 }

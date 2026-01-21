@@ -21,34 +21,42 @@ public class Livro {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public Livro (){
+    public Livro() {
         this.id = UUID.randomUUID().toString();
     }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
     public String getTitulo() {
         return titulo;
     }
+
     public void setAutor(String autor) {
         this.autor = autor;
     }
+
     public String getAutor() {
         return autor;
     }
+
     public void setAnoPublicacao(int anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
+
     public int getAnoPublicacao() {
         return anoPublicacao;
     }
+
     public void setQuantidadeEstoque(int quantidadeEstoque) {
         this.quantidadeEstoque = quantidadeEstoque;
     }
+
     public int getQuantidadeEstoque() {
         return quantidadeEstoque;
     }
+
     public String getId() {
         return id;
     }
@@ -60,11 +68,12 @@ public class Livro {
     public String getIsbn() {
         return isbn;
     }
+
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
-    public void adicionarLivro (Livro livro) {
+    public void adicionarLivro(Livro livro) {
         livro.setTitulo(titulo);
         livro.setAutor(autor);
         livro.setAnoPublicacao(anoPublicacao);
@@ -75,12 +84,19 @@ public class Livro {
 
     public void listarLivros() {
         System.out.println("Lista de livros: \n");
-        livrosEstoque.forEach((id, livro) -> System.out.println(livro)); {
+        livrosEstoque.forEach((id, livro) -> System.out.println(livro));
+        {
         }
     }
 
-    public void emprestarLivro(Usuario usuarioId, String livroId){
-
+    public void emprestarLivro(Usuario usuarioId, String livroId) {
+        if (livrosEstoque.containsKey(livroId)) {
+            usuarioId.meusLivros.put(livroId, livrosEstoque.get(livroId));
+            System.out.println("Livro emprestado com sucesso!");
+            livrosEstoque.get(livroId).setQuantidadeEstoque(livrosEstoque.get(livroId).getQuantidadeEstoque() - 1);
+        } else {
+            System.out.println("Livro não encontrado!");
+        };
     }
 
     @Override
@@ -91,6 +107,6 @@ public class Livro {
                 "\nAutor - " + getAutor() +
                 "\nAno de publicação - " + getAnoPublicacao() +
                 "\nQuantidade de estoque - " + getQuantidadeEstoque() +
-                "\nISBN - " + getIsbn();
+                "\nISBN - \n" + getIsbn();
     }
 }
