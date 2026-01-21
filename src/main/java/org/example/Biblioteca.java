@@ -21,18 +21,20 @@ public class Biblioteca {
             System.out.println("3 - Retirar um livro");
             System.out.println("4 - Relatorios");
             System.out.println("0 - Sair");
-            opcao = scan.nextInt();
+            opcao = Integer.parseInt(scan.nextLine());
 
             switch (opcao) {
                 case 1:
                     System.out.println("Digite o titulo do livro: ");
-                    novoLivro.setTitulo(scan.next());
+                    novoLivro.setTitulo(scan.nextLine());
                     System.out.println("Digite o autor do livro: ");
-                    novoLivro.setAutor(scan.next());
+                    novoLivro.setAutor(scan.nextLine());
+                    System.out.println("Digite o ISBN do livro: ");
+                    novoLivro.setIsbn(scan.nextLine());
                     System.out.println("Digite o ano de publicacao do livro: ");
-                    novoLivro.setAnoPublicacao(scan.nextInt());
+                    novoLivro.setAnoPublicacao(Integer.parseInt(scan.nextLine()));
                     System.out.println("Digite a quantidade de estoque do livro: ");
-                    novoLivro.setQuantidadeEstoque(scan.nextInt());
+                    novoLivro.setQuantidadeEstoque(Integer.parseInt(scan.nextLine()));
                     novoLivro.adicionarLivro(novoLivro);
                     System.out.println("Livro cadastrado com sucesso!\n");
                     novoLivro.listarLivros();
@@ -48,9 +50,32 @@ public class Biblioteca {
                     System.out.println("Usuario cadastrado com sucesso!");
                     break;
                 case 3:
-                    System.out.println("Digite o titulo do livro que deseja retirar: ");
-
-
+                    System.out.println("Digite o ID do livro que deseja retirar: ");
+                    novoLivro.listarLivros();
+                    String id = scan.nextLine();
+                    Usuario novoUsuario = new Usuario("Tiago", "tiago@gmail.com", "999999999");
+                    novoLivro.emprestarLivro(novoUsuario, id);
+                    break;
+                case 4:
+                    int opcaoRelatorio = -1;
+                    while (opcaoRelatorio != 0) {
+                        System.out.println("Escolha o relatorio desejado: ");
+                        System.out.println("1 - Relatorio de livros em estoque.");
+                        System.out.println("2 - Relatorio de livros mais emprestados.");
+                        System.out.println("3 - Relatorio de usuarios em atraso.");
+                        System.out.println("0 - Voltar");
+                        opcaoRelatorio = Integer.parseInt(scan.nextLine());
+                        switch (opcaoRelatorio) {
+                            case 1:
+                                novoLivro.listarLivros();
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }
+                    }
+                    break;
             }
         }
 
