@@ -42,7 +42,7 @@ Um projeto acadêmico de sistema de gerenciamento de biblioteca desenvolvido em 
 ## 💻 Tecnologias e Tópicos Utilizados
 
 ### **Linguagem e Plataforma**
-- **Java 11+** - Linguagem de programação orientada a objetos
+- **Java 25** - Linguagem de programação orientada a objetos
 - **JDK (Java Development Kit)** - Ferramentas de compilação e execução
 
 ### **Programação Orientada a Objetos (POO)**
@@ -106,7 +106,7 @@ src/
 ## 🚀 Como Executar
 
 ### **Pré-requisitos**
-- Java 11 ou superior instalado
+- Java 25 instalado
 - IDE (IntelliJ IDEA, Eclipse, VS Code) ou compilador Java
 - Terminal/Prompt de comando
 
