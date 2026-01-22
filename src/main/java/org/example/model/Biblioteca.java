@@ -31,7 +31,10 @@ public class Biblioteca {
         }
         if (!livros.containsKey(livroId)) {
             throw new IllegalArgumentException("Livro não encontrado!");
-        } else if (livros.get(livroId).getQuantidadeEstoque() > 0) {
+        }
+        if (qtdEmprestimosUsuario(usuarioId) >= 3) {
+            throw new IllegalArgumentException("Maximo de 3 livros emprestados por usuario!");
+        }else if (livros.get(livroId).getQuantidadeEstoque() > 0) {
             Emprestimo emprestimo = new Emprestimo(usuarioId, livroId);
             emprestimos.add(emprestimo);
             livros.get(livroId).setQuantidadeEstoque(livros.get(livroId).getQuantidadeEstoque() - 1);
@@ -40,12 +43,17 @@ public class Biblioteca {
         }
     }
 
+    private int qtdEmprestimosUsuario(String usuarioId) {
+        return (int) emprestimos.stream()
+                .filter(emprestimo -> emprestimo.getUsuarioId().equals(usuarioId)).count();
+    }
+
     public void adicionarUsuario(Usuario usuario) {
         usuarios.put(usuario.getId(), usuario);
     }
 
     public void devolverLivro(String usuarioId, String livroId) {
-        emprestimos.
+
     }
 
     public void iniciar() {

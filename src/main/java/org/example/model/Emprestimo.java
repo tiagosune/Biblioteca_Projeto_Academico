@@ -17,7 +17,7 @@ public class Emprestimo {
         this.usuarioId = usuarioId;
         this.livroId = livroId;
         this.dataEmprestimo = LocalDate.now();
-        this.dataDevolucaoEsperada = LocalDate.now().plusDays(14);  // 14 dias
+        this.dataDevolucaoEsperada = LocalDate.now().plusDays(14);
         this.dataDevolucaoReal = null;
     }
 
