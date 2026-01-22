@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Biblioteca {
 
@@ -24,6 +25,10 @@ public class Biblioteca {
         usuarios.forEach((id, usuario) -> System.out.println(usuario));
     }
 
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
 
     public void emprestarLivro(String usuarioId, String livroId) {
         if (!usuarios.containsKey(usuarioId)) {
@@ -34,7 +39,7 @@ public class Biblioteca {
         }
         if (qtdEmprestimosUsuario(usuarioId) >= 3) {
             throw new IllegalArgumentException("Maximo de 3 livros emprestados por usuario!");
-        }else if (livros.get(livroId).getQuantidadeEstoque() > 0) {
+        } else if (livros.get(livroId).getQuantidadeEstoque() > 0) {
             Emprestimo emprestimo = new Emprestimo(usuarioId, livroId);
             emprestimos.add(emprestimo);
             livros.get(livroId).setQuantidadeEstoque(livros.get(livroId).getQuantidadeEstoque() - 1);
@@ -52,8 +57,8 @@ public class Biblioteca {
         usuarios.put(usuario.getId(), usuario);
     }
 
-    public void devolverLivro(String usuarioId, String livroId) {
-
+    public void devolverLivro(String emprestimoId) {
+        emprestimos.remove(emprestimoId);
     }
 
     public void iniciar() {
@@ -115,6 +120,10 @@ public class Biblioteca {
                     }
                     break;
                 case 4:
+                    System.out.println("Digite o codigo do emprestimo que deseja devolver: ");
+                    getEmprestimos().forEach(emprestimo -> System.out.println(emprestimo));
+                    String emprestimoId = scan.nextLine();
+                    devolverLivro(emprestimoId);
                     break;
                 case 5:
                     int opcaoRelatorio = -1;
@@ -130,9 +139,17 @@ public class Biblioteca {
                                 listarLivros();
                                 break;
                             case 2:
-
+                                System.out.println("Livros emprestados: \n");
+                                getEmprestimos().forEach(emprestimo -> System.out.println(emprestimo));
                                 break;
                             case 3:
+                                System.out.println("Usuarios em atraso: \n");
+                                emprestimos.stream().filter(Emprestimo::estaAtrasado)
+                                        .forEach(emp -> {
+                                            String usuarioId1 = emp.getUsuarioId();
+                                            Usuario usuario = usuarios.get(usuarioId1);
+                                            System.out.println(usuario);
+                                        });
                                 break;
                         }
                     }
