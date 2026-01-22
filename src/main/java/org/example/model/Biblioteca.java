@@ -59,6 +59,8 @@ public class Biblioteca {
 
     public void devolverLivro(String emprestimoId) {
         emprestimos.remove(emprestimoId);
+
+        System.out.println("Livro devolvido com sucesso!");
     }
 
     public void iniciar() {
