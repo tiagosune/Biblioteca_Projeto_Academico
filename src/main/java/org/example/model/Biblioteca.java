@@ -58,10 +58,20 @@ public class Biblioteca {
     }
 
     public void devolverLivro(String emprestimoId) {
-        emprestimos.remove(emprestimoId);
+        Emprestimo emprestimo = emprestimos.stream()
+                .filter(e -> e.getId().equals(emprestimoId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Empréstimo não encontrado!"));
+
+        String livroId = emprestimo.getLivroId();
+        livros.get(livroId).setQuantidadeEstoque(
+                livros.get(livroId).getQuantidadeEstoque() + 1
+        );
+        emprestimo.devolver();
 
         System.out.println("Livro devolvido com sucesso!");
     }
+
 
     public void iniciar() {
         int opcao = -1;

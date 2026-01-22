@@ -30,6 +30,7 @@ public class Emprestimo {
         this.dataDevolucaoReal = LocalDate.now();
     }
 
+    public String getId() { return id; }
     public String getUsuarioId() { return usuarioId; }
     public String getLivroId() { return livroId; }
     public LocalDate getDataEmprestimo() { return dataEmprestimo; }
