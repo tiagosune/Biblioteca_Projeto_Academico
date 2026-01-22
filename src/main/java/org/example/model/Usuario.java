@@ -1,12 +1,10 @@
-package org.example;
+package org.example.model;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class Usuario {
-
-    Map<String, Usuario> usuarios = new HashMap();
-    Map<String, Livro> meusLivros = new HashMap<>();
 
     private String id;
     private String nome;
@@ -52,14 +50,12 @@ public class Usuario {
         return id;
     }
 
-    public void adicionarUsuario(Usuario usuario){
-        usuario.setNome(nome);
-        usuario.setEmail(email);
-        usuario.setTelefone(telefone);
-        usuarios.put(getId(), usuario);
-    }
-
-    public void livrosEmprestados(){
-        System.out.println(meusLivros);
+    @Override
+    public String toString() {
+        return "Usuario: \n" +
+                "ID - " + getId() +
+                "\nNome - " + getNome() +
+                "\nEmail - " + getEmail() +
+                "\nTelefone - " + getTelefone() + "\n";
     }
 }

@@ -1,10 +1,10 @@
-package org.example;
+package org.example.model;
 
 import java.util.*;
 
 public class Livro {
 
-    Map<String, Livro> livrosEstoque = new HashMap<>();
+
     private String id;
     private String titulo;
     private String autor;
@@ -61,10 +61,6 @@ public class Livro {
         return id;
     }
 
-    public Map<String, Livro> getLivrosEstoque() {
-        return livrosEstoque;
-    }
-
     public String getIsbn() {
         return isbn;
     }
@@ -73,33 +69,6 @@ public class Livro {
         this.isbn = isbn;
     }
 
-    public void adicionarLivro(Livro livro) {
-        Livro livro1 = new Livro();
-        livro1.setTitulo(titulo);
-        livro1.setAutor(autor);
-        livro1.setAnoPublicacao(anoPublicacao);
-        livro1.setQuantidadeEstoque(quantidadeEstoque);
-        livro1.setIsbn(isbn);
-        livrosEstoque.put(livro1.getId(), livro1);
-    }
-
-
-    public void listarLivros() {
-        System.out.println("Lista de livros: \n");
-        livrosEstoque.forEach((id, livro) -> System.out.println(livro));
-        {
-        }
-    }
-
-    public void emprestarLivro(Usuario usuarioId, String livroId) {
-        if (livrosEstoque.containsKey(livroId)) {
-            usuarioId.meusLivros.put(livroId, livrosEstoque.get(livroId));
-            System.out.println("Livro emprestado com sucesso!");
-            livrosEstoque.get(livroId).setQuantidadeEstoque(livrosEstoque.get(livroId).getQuantidadeEstoque() - 1);
-        } else {
-            System.out.println("Livro não encontrado!");
-        };
-    }
 
     @Override
     public String toString() {
